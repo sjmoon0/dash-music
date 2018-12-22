@@ -4,7 +4,7 @@ Music player built from a Raspberry Pi computer and Amazon Dash button
 [Video instructions](https://youtu.be/CQ_QoXGEc54)
 
 ## Dependencies: 
-- python
+- nodejs
 - omxplayer
 
 ## Setup:
@@ -18,8 +18,9 @@ Music player built from a Raspberry Pi computer and Amazon Dash button
 - Log in to your home router
 - View MAC addresses via the router GUI, press the Amazon Dash button and make note of the MAC address that displays then disappears
 - Clone this repository
-- Update the MAC address & Drive Path in dash.py
-## Run 
+- Update the MAC address & Drive Path in index.js
+## Run
+After cloning repo and installing package, from the project root directory, run this command: 
 ```
-sudo python dash.py
+sudo node index.js
 ```
