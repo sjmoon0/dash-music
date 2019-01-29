@@ -4,7 +4,18 @@ const dash_button = require('node-dash-button');
 const util = require('util');
 const { spawn } = require('child_process');
 
-const dash = dash_button(["aa:bb:cc:dd:ee:ff","00:11:22:33:44:55"],null,null,'all');
+/*
+File that exports JavaScript object literal in the form:
+{
+	redbull: '00:11:22:33:44:55',
+	redbullPath: 'path/to/flashdrive0/,
+	cheezit: 'aa:bb:cc:dd:ee:ff'	
+	cheezitPath: 'path/to/flashdrive1/
+}
+*/
+const buttons = require('./buttons.js');
+
+const dash = dash_button([buttons.redbull,buttons.cheezit],null,null,'all');
 
 function getSongs(usb_path){
 	return new Promise(function(resolve,reject){
@@ -45,10 +56,10 @@ function checkOMXPlayerRunning(){
 
 dash.on("detected",function(dash_id){
 	let usb_path = "";
-	if(dash_id === "aa:bb:cc:dd:ee:ff"){
+	if(dash_id === buttons.redbull){
 	  console.log("redbull");
 	  usb_path = '/media/pi/PATRIOT';
-	}else if(dash_id === "00:11:22:33:44:55"){
+	}else if(dash_id === buttons[1]){
 	  console.log("cheezit");
 	  usb_path = '/media/pi/PATRIOT';
 	}
@@ -69,7 +80,7 @@ dash.on("detected",function(dash_id){
 
 function getRandomFile(songs){
 	let result = songs[getRandomInt(0,songs.length)];
-	let rand_file = "/media/pi/PATRIOT/"+result;
+	let rand_file = `${buttons.redbullPath}${result}`;
     rand_file = rand_file.replace("'","\'");
     console.log("Song played: "+result);
     return rand_file;
