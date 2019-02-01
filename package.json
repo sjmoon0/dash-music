@@ -9,6 +9,10 @@
   "author": "steve",
   "license": "ISC",
   "dependencies": {
-    "node-dash-button": "^0.6.1"
+    "node-dash-button": "^0.6.1",
+    "say": "^0.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
