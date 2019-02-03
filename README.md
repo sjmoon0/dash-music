@@ -6,6 +6,7 @@ Music player built from a Raspberry Pi computer and Amazon Dash button
 ## Dependencies: 
 - nodejs
 - omxplayer
+- festival
 
 ## Setup:
 - Connect speakers to Raspberry pi
