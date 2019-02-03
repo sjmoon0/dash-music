@@ -3,8 +3,8 @@
 const dash_button = require('node-dash-button');
 const util = require('util');
 const { spawn } = require('child_process');
-const say = require('say')
-
+const say = require('say');
+const { playSong } = require('./dj');
 /*
 File that exports JavaScript object literal in the form:
 {
@@ -68,19 +68,8 @@ dash.on("detected",function(dash_id){
 	let promise2 = checkOMXPlayerRunning();
 	Promise.all([promise1,promise2]).then(values => {
 		if(values[1] === "Now Playing: "){
-			//let song = getRandomFile(values[0]);
-			let songName = getRandomSongName(values[0]);
-			console.log("Trying to play: "+songName);    
-			say.speak(`Next song up is ${songName}`,null,1, (e) => {
-				if(e){
-					say.speak('something went wrong, chap');
-					console.log(e);
-				}
-				console.log("Playing: "+songName); 
-				let song = getSongFile(songName)		
-				spawn('omxplayer',[song]);
-			});
-			//say.stop();
+			let songName = getRandomSongName(values[0]);  
+			playSong(songName, usb_path);
 		}else if(values[1] === "Song playing..."){
 			console.log("Song already playing!")
 		}
@@ -94,18 +83,10 @@ function getRandomSongName(songs){
 	return songs[getRandomInt(0,songs.length)];
 }
 
-function getSongFile(songName){
-	//let result = songs[getRandomInt(0,songs.length)];
-	let rand_file = `${buttons.redbullPath}${songName}`;
-    rand_file = rand_file.replace("'","\'");
-    return rand_file;
-}
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 } 
 
-
-
+console.log('Dash button music player started');

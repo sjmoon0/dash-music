@@ -9,8 +9,10 @@
   "author": "steve",
   "license": "ISC",
   "dependencies": {
+    "music-metadata": "^3.5.1",
     "node-dash-button": "^0.6.1",
-    "say": "^0.15.0"
+    "say": "^0.15.0",
+    "wtf_wikipedia": "^7.2.9"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
